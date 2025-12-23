@@ -23,10 +23,10 @@ def find(y, x):
         k += 1
 
         for _ in range(len(que)):
-            y, x = que.popleft()
+            q, w = que.popleft()
 
             for i in range(4):
-                ny, nx = y + dy[i], x + dx[i]
+                ny, nx = q + dy[i], w + dx[i]
                 if 0 <= ny < N and 0 <= nx < N and not visited[ny][nx]:
                     visited[ny][nx] = True
                     que.append([ny, nx])
@@ -36,11 +36,12 @@ def find(y, x):
 
         if (k ** 2 + (k + 1) ** 2) <= count * M:
             result = max(count, result)
+
     return result
 
 def is_bool(visited):
     for i in range(N):
-        for j in range(M):
+        for j in range(N):
             if visited[i][j] == False:
                 return True
     return False
@@ -48,7 +49,7 @@ def is_bool(visited):
 result = 0
 
 for i in range(N):
-    for j in range(M):
+    for j in range(N):
         result = max(result, find(i, j))
 
 print(result)
